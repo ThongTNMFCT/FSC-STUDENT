@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra cứu bài tập Python</title>
+    <!-- Thêm CDN của Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-8 max-w-3xl bg-white rounded-lg shadow-lg mt-16">
+        <h1 class="text-4xl font-semibold text-center text-blue-600 mb-6">Bài Tập Python | FSC-STUDENT</h1>
+        <p class="text-center text-lg mb-4">Nhập tên file để tìm bài tập Python.</p>
+        
+        <div class="flex justify-center">
+            <input type="text" id="file-name" class="w-2/3 p-4 border-2 border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập tên file (ví dụ: fsc_tin_1)">
+            <button onclick="searchFile()" class="p-4 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition duration-300">Tìm kiếm</button>
+        </div>
+
+        <div id="result" class="mt-8"></div>
+    </div>
+
+    <script>
+        const exercises = {
+            "fsc_tin_1": {
+                title: "Máy tính cơ bản",
+                description: "Viết chương trình thực hiện các phép tính cộng, trừ, nhân, chia cơ bản.",
+                suggestion: "Sử dụng input() để nhận giá trị từ người dùng và thực hiện các phép tính.",
+                tag: "#fsc_tin_1",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_1.py"
+            },
+            "fsc_tin_2": {
+                title: "Đếm số ký tự trong chuỗi",
+                description: "Nhập một chuỗi từ người dùng và đếm số lượng ký tự, chữ cái, và số.",
+                suggestion: "Dùng vòng lặp và các phương thức như .isalpha() hoặc .isdigit().",
+                tag: "#fsc_tin_2",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_2.py"
+            },
+            "fsc_tin_3": {
+                title: "Trò chơi đoán số",
+                description: "Viết trò chơi để người dùng đoán một số trong khoảng từ 1 đến 100.",
+                suggestion: "Dùng random.randint() để tạo số ngẫu nhiên.",
+                tag: "#fsc_tin_3",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_3.py"
+            },
+            "fsc_tin_4": {
+                title: "Máy phát hiện số nguyên tố",
+                description: "Người dùng nhập một số, chương trình kiểm tra xem nó có phải là số nguyên tố không.",
+                suggestion: "Dùng vòng lặp để kiểm tra số đó có chia hết cho bất kỳ số nào khác ngoài 1 và chính nó không.",
+                tag: "#fsc_tin_4",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_4.py"
+            },
+            "fsc_tin_5": {
+                title: "Quản lý danh bạ đơn giản",
+                description: "Tạo chương trình lưu trữ, tìm kiếm, thêm và xóa thông tin liên lạc (tên, số điện thoại).",
+                suggestion: "Dùng từ điển (dict) để lưu trữ dữ liệu.",
+                tag: "#fsc_tin_5",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_5.py"
+            },
+            "fsc_tin_6": {
+                title: "Tạo lịch sự kiện",
+                description: "Viết ứng dụng cho phép người dùng thêm sự kiện vào một lịch và xem lịch sự kiện.",
+                suggestion: "Sử dụng thư viện datetime và cấu trúc dữ liệu danh sách (list).",
+                tag: "#fsc_tin_6",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_6.py"
+            },
+            "fsc_tin_7": {
+                title: "Tạo mật khẩu ngẫu nhiên",
+                description: "Viết chương trình tạo mật khẩu ngẫu nhiên với độ dài do người dùng chọn.",
+                suggestion: "Sử dụng thư viện random và string để chọn ngẫu nhiên ký tự.",
+                tag: "#fsc_tin_7",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_7.py"
+            },
+            "fsc_tin_8": {
+                title: "Trình quản lý file",
+                description: "Tạo chương trình có thể duyệt, sao chép, xóa và đổi tên file trong một thư mục.",
+                suggestion: "Dùng thư viện os và shutil.",
+                tag: "#fsc_tin_8",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_8.py"
+            },
+            "fsc_tin_9": {
+                title: "Phân tích dữ liệu từ file CSV",
+                description: "Viết chương trình đọc dữ liệu từ file CSV, phân tích (tính trung bình, tổng, v.v.).",
+                suggestion: "Dùng thư viện csv và các cấu trúc dữ liệu như danh sách.",
+                tag: "#fsc_tin_9",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_9.py"
+            },
+            "fsc_tin_10": {
+                title: "Ứng dụng web đơn giản",
+                description: "Tạo một ứng dụng web cơ bản hiển thị thông tin (vd: 'Hello, World!') và có các tương tác cơ bản.",
+                suggestion: "Dùng framework Flask hoặc Django.",
+                tag: "#fsc_tin_10",
+                githubLink: "https://github.com/ThongTNMFCT/FSC-STUDENT/blob/main/fsc_tin_10.py"
+            }
+        };
+
+        function searchFile() {
+            const fileName = document.getElementById('file-name').value.trim().toLowerCase();
+            const result = document.getElementById('result');
+            result.innerHTML = '';
+
+            if (exercises[fileName]) {
+                const exercise = exercises[fileName];
+                result.innerHTML = `
+                    <div class="p-6 bg-blue-50 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold text-blue-600">${exercise.title}</h2>
+                        <p class="mt-4 text-lg"><strong>Mô tả:</strong> ${exercise.description}</p>
+                        <p class="mt-2 text-lg"><strong>Gợi ý:</strong> ${exercise.suggestion}</p>
+                        <p class="mt-2 text-lg"><strong>Thẻ:</strong> ${exercise.tag}</p>
+                        <a href="${exercise.githubLink}" target="_blank">
+                            <button class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300">Đến GitHub</button>
+                        </a>
+                    </div>
+                `;
+            } else {
+                result.innerHTML = `<p class="text-center text-red-600 text-lg">Không tìm thấy bài tập với tên file "${fileName}".</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
