@@ -3,3 +3,6 @@ Thư mục GitHub FSC-STUDENT là một kho tài nguyên lập trình Python đ�
 
 - Tác giả: **TRẦN NGỌC MINH THÔNG** - Học sinh Khóa 6 - Lớp: K6T3
 - Đơn vị: Trường THPT FPT Cần Thơ
+- Website tra cứu bài tập (Theo Github): Cập nhật sau!
+- Website học lạp trình đa ngôn ngữ (Thầy Nguyễn Hoàng Phú): https://nhpoj.net/
+  
