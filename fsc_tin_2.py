@@ -1,7 +1,6 @@
-#in ra màn hình 10 dòng Hello World
-for _ in range(10):
-    print("Hello World")
-
-#for "bienchay" in range (m,n)
-    #bienchay: Biến quản lý số lần lặp
-    #(m,n): Danh sách giá trị lặp
+#fsc_tin_2
+# Dự án 2: Đếm số ký tự trong chuỗi
+string = input("Nhập chuỗi: ")
+letters = sum(c.isalpha() for c in string)
+digits = sum(c.isdigit() for c in string)
+print(f"Chữ cái: {letters}, Chữ số: {digits}")
